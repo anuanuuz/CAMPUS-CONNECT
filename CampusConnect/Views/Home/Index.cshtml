@@ -1,0 +1,154 @@
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+@if (User.Identity.IsAuthenticated)
+{
+    <div class="row">
+        <div class="col-12">
+            <h1 class="mb-4">
+                <i class="fas fa-tachometer-alt me-2"></i>Welcome to Campus Connect
+            </h1>
+            <p class="lead">Your alumni association platform connecting students and graduates.</p>
+        </div>
+    </div>
+
+    <!-- Statistics Cards -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="card bg-primary text-white">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-users fa-2x me-3"></i>
+                        <div>
+                            <h5 class="card-title">@ViewBag.TotalAlumni</h5>
+                            <p class="card-text">Alumni Members</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-success text-white">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-calendar fa-2x me-3"></i>
+                        <div>
+                            <h5 class="card-title">@ViewBag.UpcomingEvents</h5>
+                            <p class="card-text">Upcoming Events</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-info text-white">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-briefcase fa-2x me-3"></i>
+                        <div>
+                            <h5 class="card-title">@ViewBag.ActiveJobs</h5>
+                            <p class="card-text">Active Job Posts</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-warning text-white">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-envelope fa-2x me-3"></i>
+                        <div>
+                            <h5 class="card-title">@ViewBag.UnreadMessages</h5>
+                            <p class="card-text">Unread Messages</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5><i class="fas fa-bolt me-2"></i>Quick Actions</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3 mb-2">
+                            <a asp-controller="Users" asp-action="Index" class="btn btn-outline-primary w-100">
+                                <i class="fas fa-search me-1"></i>Browse Alumni
+                            </a>
+                        </div>
+                        <div class="col-md-3 mb-2">
+                            <a asp-controller="Events" asp-action="Create" class="btn btn-outline-success w-100">
+                                <i class="fas fa-plus me-1"></i>Create Event
+                            </a>
+                        </div>
+                        <div class="col-md-3 mb-2">
+                            <a asp-controller="Jobs" asp-action="Create" class="btn btn-outline-info w-100">
+                                <i class="fas fa-briefcase me-1"></i>Post Job
+                            </a>
+                        </div>
+                        <div class="col-md-3 mb-2">
+                            <a asp-controller="Messages" asp-action="Compose" class="btn btn-outline-warning w-100">
+                                <i class="fas fa-paper-plane me-1"></i>Send Message
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="text-center">
+        <h1 class="display-4 mb-4">
+            <i class="fas fa-graduation-cap me-3"></i>Welcome to Campus Connect
+        </h1>
+        <p class="lead mb-4">The premier alumni association platform connecting students and graduates.</p>
+        
+        <div class="row mt-5">
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <i class="fas fa-users fa-3x text-primary mb-3"></i>
+                        <h5>Alumni Network</h5>
+                        <p>Connect with fellow alumni, search by graduation year, company, or location.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <i class="fas fa-calendar fa-3x text-success mb-3"></i>
+                        <h5>Event Management</h5>
+                        <p>Discover upcoming events, register for reunions, workshops, and networking sessions.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <i class="fas fa-briefcase fa-3x text-info mb-3"></i>
+                        <h5>Career Networking</h5>
+                        <p>Access job opportunities posted by alumni and connect through our messaging system.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mt-5">
+            <a asp-area="Identity" asp-page="/Account/Register" class="btn btn-primary btn-lg me-3">
+                <i class="fas fa-user-plus me-2"></i>Join Now
+            </a>
+            <a asp-area="Identity" asp-page="/Account/Login" class="btn btn-outline-primary btn-lg">
+                <i class="fas fa-sign-in-alt me-2"></i>Sign In
+            </a>
+        </div>
+    </div>
+}
