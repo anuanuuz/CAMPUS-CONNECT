@@ -1,0 +1,151 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alumni Association Portal - <asp:ContentPlaceHolder ID="TitleContent" runat="server">Home</asp:ContentPlaceHolder></title>
+    
+    <!-- Stylesheets -->
+    <link href="~/Styles/main.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    
+    <!-- Meta Tags -->
+    <meta name="description" content="Alumni Association Portal - Connect, Network, and Grow Together" />
+    <meta name="keywords" content="alumni, association, networking, events, university" />
+    <meta name="author" content="Alumni Association" />
+    
+    <!-- Additional Head Content -->
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server"></asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePartialRendering="true"></asp:ScriptManager>
+        
+        <!-- Header Section -->
+        <header class="header">
+            <div class="container">
+                <div class="header-content">
+                    <a href="Default.aspx" class="logo">
+                        <i class="fas fa-graduation-cap"></i>
+                        Alumni Portal
+                    </a>
+                    
+                    <nav>
+                        <ul class="nav-menu">
+                            <li><a href="Default.aspx"><i class="fas fa-home"></i> Home</a></li>
+                            <li><a href="Alumni/Directory.aspx"><i class="fas fa-users"></i> Directory</a></li>
+                            <li><a href="Events/Events.aspx"><i class="fas fa-calendar"></i> Events</a></li>
+                            <li><a href="News.aspx"><i class="fas fa-newspaper"></i> News</a></li>
+                            <li><a href="Gallery.aspx"><i class="fas fa-images"></i> Gallery</a></li>
+                            
+                            <asp:Panel ID="pnlGuestMenu" runat="server" Visible="true">
+                                <li><a href="Login.aspx"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+                                <li><a href="Register.aspx"><i class="fas fa-user-plus"></i> Register</a></li>
+                            </asp:Panel>
+                            
+                            <asp:Panel ID="pnlUserMenu" runat="server" Visible="false">
+                                <li><a href="Alumni/Profile.aspx"><i class="fas fa-user"></i> Profile</a></li>
+                                <li><a href="Messages/Inbox.aspx"><i class="fas fa-envelope"></i> Messages</a></li>
+                                <li>
+                                    <asp:Panel ID="pnlAdminMenu" runat="server" Visible="false">
+                                        <a href="Admin/Dashboard.aspx"><i class="fas fa-cog"></i> Admin</a>
+                                    </asp:Panel>
+                                </li>
+                                <li><asp:LinkButton ID="lnkLogout" runat="server" OnClick="lnkLogout_Click" CssClass="nav-link"><i class="fas fa-sign-out-alt"></i> Logout</asp:LinkButton></li>
+                            </asp:Panel>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main>
+            <asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="grid grid-3">
+                    <div>
+                        <h4 style="color: #667eea; margin-bottom: 1rem;">
+                            <i class="fas fa-graduation-cap"></i> Alumni Portal
+                        </h4>
+                        <p>Connecting graduates, fostering relationships, and building a stronger community for lifelong success.</p>
+                    </div>
+                    <div>
+                        <h5 style="color: #333; margin-bottom: 1rem;">Quick Links</h5>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="margin-bottom: 0.5rem;"><a href="About.aspx" style="color: #666; text-decoration: none;"><i class="fas fa-info-circle"></i> About Us</a></li>
+                            <li style="margin-bottom: 0.5rem;"><a href="Contact.aspx" style="color: #666; text-decoration: none;"><i class="fas fa-phone"></i> Contact</a></li>
+                            <li style="margin-bottom: 0.5rem;"><a href="Privacy.aspx" style="color: #666; text-decoration: none;"><i class="fas fa-shield-alt"></i> Privacy Policy</a></li>
+                            <li style="margin-bottom: 0.5rem;"><a href="Terms.aspx" style="color: #666; text-decoration: none;"><i class="fas fa-file-contract"></i> Terms of Service</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h5 style="color: #333; margin-bottom: 1rem;">Connect With Us</h5>
+                        <div style="display: flex; gap: 1rem; justify-content: center;">
+                            <a href="#" style="color: #667eea; font-size: 1.5rem;"><i class="fab fa-facebook"></i></a>
+                            <a href="#" style="color: #667eea; font-size: 1.5rem;"><i class="fab fa-twitter"></i></a>
+                            <a href="#" style="color: #667eea; font-size: 1.5rem;"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" style="color: #667eea; font-size: 1.5rem;"><i class="fab fa-instagram"></i></a>
+                        </div>
+                        <p style="margin-top: 1rem;">
+                            <i class="fas fa-envelope"></i> contact@alumni.edu<br />
+                            <i class="fas fa-phone"></i> +1 (555) 123-4567
+                        </p>
+                    </div>
+                </div>
+                <hr style="margin: 2rem 0; border: none; height: 1px; background: #e0e0e0;" />
+                <p style="text-align: center; color: #999;">
+                    &copy; <%= DateTime.Now.Year %> Alumni Association Portal. All rights reserved.
+                    | Developed with <i class="fas fa-heart" style="color: #ff6b6b;"></i> for our alumni community
+                </p>
+            </div>
+        </footer>
+
+        <!-- Success/Error Messages -->
+        <asp:Panel ID="pnlMessages" runat="server" Visible="false" CssClass="message-container">
+            <div class="container">
+                <asp:Label ID="lblMessage" runat="server" CssClass="message"></asp:Label>
+            </div>
+        </asp:Panel>
+    </form>
+
+    <!-- JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        // Smooth scrolling for anchor links
+        $(document).ready(function() {
+            $('a[href^="#"]').on('click', function(event) {
+                var target = $(this.getAttribute('href'));
+                if( target.length ) {
+                    event.preventDefault();
+                    $('html, body').stop().animate({
+                        scrollTop: target.offset().top - 100
+                    }, 1000);
+                }
+            });
+
+            // Add fade-in animation to content
+            $('.main-content').addClass('fade-in');
+
+            // Auto-hide messages after 5 seconds
+            setTimeout(function() {
+                $('.message-container').fadeOut();
+            }, 5000);
+        });
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            $('.nav-menu').slideToggle();
+        }
+    </script>
+    
+    <!-- Additional Scripts -->
+    <asp:ContentPlaceHolder ID="ScriptContent" runat="server"></asp:ContentPlaceHolder>
+</body>
+</html>
